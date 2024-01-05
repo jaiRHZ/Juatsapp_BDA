@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Mensajes")
-public class Mensaje implements Serializable{
+public class Mensaje {
 
     @Id
     @Column(name = "id")

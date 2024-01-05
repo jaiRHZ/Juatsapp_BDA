@@ -1,4 +1,3 @@
-
 package dominio;
 
 import java.io.Serializable;
@@ -7,48 +6,48 @@ import java.util.Calendar;
 import java.util.List;
 import javax.persistence.*;
 
-
 /**
  *
  * @author Jairo G. Rodriguez Hernandez 00000213248
  */
 @Entity
 @Table(name = "Usuarios")
-public class Usuario implements Serializable{
-    
+public class Usuario implements Serializable {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @Column(name = "telefono", nullable = false)
     private String telefono;
-    
+
     @Column(name = "generoUsuario", nullable = false)
+    @Enumerated(EnumType.STRING)
     private GeneroUsuario genero;
-    
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "idImagen", nullable = true)
     private Imagen perfil;
-    
+
     @Column(name = "fechaNacimiento", nullable = false)
     @Temporal(TemporalType.DATE)
     private Calendar fechaNacimiento;
-    
+
     @Column(name = "contrasenya", nullable = false)
     private String contrasenya;
-    
+
     //Relaciones
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_domicilio")
     private Domicilio domicilio;
 
-     @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario")
     private List<Mensaje> mensajes;
-    
-     @ManyToMany(mappedBy = "usuarios")
+
+    @ManyToMany(mappedBy = "usuarios")
     private List<Chat> chats;
 
-     
-     
     public Usuario() {
     }
 
@@ -83,7 +82,7 @@ public class Usuario implements Serializable{
         this.contrasenya = contrasenya;
         this.domicilio = domicilio;
     }
-     
+
     //---Getter & Setter---
     public String getTelefono() {
         return telefono;
@@ -183,6 +182,5 @@ public class Usuario implements Serializable{
     public String toString() {
         return "Usuario{" + "id=" + id + ", telefono=" + telefono + ", genero=" + genero + ", perfil=" + perfil + ", fechaNacimiento=" + fechaNacimiento + ", contrasenya=" + contrasenya + ", domicilio=" + domicilio + ", mensajes=" + mensajes + ", chats=" + chats + '}';
     }
-    
-    
+
 }
