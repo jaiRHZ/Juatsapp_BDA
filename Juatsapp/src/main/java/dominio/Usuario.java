@@ -47,7 +47,7 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<Mensaje> mensajes;
 
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany(mappedBy = "usuarios", fetch = FetchType.EAGER)
     private List<Chat> chats;
 
     public Usuario() {
