@@ -16,7 +16,7 @@ public interface IMensajeDAO {
     
     public Mensaje updateMensaje(Mensaje mensaje);
     
-    public void deleteUpdate(Mensaje mensaje);
+    public void deleteMensaje(Mensaje mensaje);
     
     public List<Mensaje> readAllMensaje();
     

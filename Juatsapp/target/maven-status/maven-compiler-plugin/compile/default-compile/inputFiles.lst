@@ -1,7 +1,15 @@
-C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\dominio\Chat.java
+C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\interfaces\IMensajeDAO.java
+C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\implementacionDAO\UsuarioDAO.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\dominio\Domicilio.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\dominio\Mensaje.java
+C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\interfaces\IUsuarioDAO.java
+C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\dominio\Imagen.java
+C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\conexionBD\IConexionBD.java
+C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\conexionBD\ConexionBD.java
+C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\dominio\Chat.java
+C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\interfaces\IChatDAO.java
+C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\implementacionDAO\ChatDAO.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\mx\itson\juatsapp\Juatsapp.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\dominio\Usuario.java
-C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\dominio\Imagen.java
+C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\implementacionDAO\MensajeDAO.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\dominio\GeneroUsuario.java

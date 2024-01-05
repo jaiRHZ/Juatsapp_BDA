@@ -1,9 +1,16 @@
 
 package implementacionDAO;
 
+import conexionBD.IConexionBD;
 import dominio.Usuario;
 import interfaces.IUsuarioDAO;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -11,14 +18,54 @@ import java.util.List;
  */
 public class UsuarioDAO implements IUsuarioDAO{
 
+    IConexionBD iConexionBD;
+
+    public UsuarioDAO(IConexionBD iConexionBD) {
+        this.iConexionBD = iConexionBD;
+    }
+    
     @Override
     public Usuario createUsuario(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        EntityManagerFactory bdf = iConexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
+        
+        try {
+            bd.getTransaction().begin();
+            bd.persist(usuario);
+            bd.getTransaction().commit();
+            return usuario;
+        } catch (Exception ex) {
+            bd.getTransaction().rollback();
+            System.out.println(ex.getMessage());
+            
+        } finally {
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
+        }
+        return null;
+    
     }
 
     @Override
     public Usuario readUsuario(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        EntityManagerFactory bdf = iConexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
+        try {
+            bd.getTransaction().begin();
+            Usuario usuarioEncontrado = bd.find(Usuario.class, usuario.getTelefono());
+            bd.getTransaction().commit();
+            return usuarioEncontrado;
+        } catch (Exception ex) {
+            bd.getTransaction().rollback();
+            System.out.println(ex.getMessage());
+        } finally {
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
+        }
+        return null;
+    
     }
 
     @Override
@@ -33,7 +80,27 @@ public class UsuarioDAO implements IUsuarioDAO{
 
     @Override
     public List<Usuario> readAllUsuario() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        EntityManagerFactory bdf = iConexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
+        try {
+            bd.getTransaction().begin();
+            CriteriaBuilder builder = bd.getCriteriaBuilder();
+            CriteriaQuery<Usuario> criteria = builder.createQuery(Usuario.class);
+            Root<Usuario> root = criteria.from(Usuario.class);
+            TypedQuery<Usuario> query = bd.createQuery(criteria);
+            List<Usuario> pagos = query.getResultList();
+            bd.getTransaction().commit();
+            return pagos;
+
+        } catch (Exception ex) {
+            bd.getTransaction().rollback();
+            System.out.println(ex.getMessage());
+        } finally {
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
+        }
+        return null;
     }
     
 }
