@@ -1,0 +1,7 @@
+dominio\Usuario.class
+mx\itson\juatsapp\Juatsapp.class
+dominio\Mensaje.class
+dominio\Imagen.class
+dominio\Domicilio.class
+dominio\GeneroUsuario.class
+dominio\Chat.class
