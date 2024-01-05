@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +35,9 @@ public class UsuarioDAO implements IUsuarioDAO {
             bd.getTransaction().commit();
             return usuario;
         } catch (Exception ex) {
+            
+            JOptionPane.showMessageDialog(null, "Este numero ya ha sido registrado");
+            
             bd.getTransaction().rollback();
             System.out.println(ex.getMessage());
 

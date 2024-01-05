@@ -6,11 +6,9 @@ conexionBD\IConexionBD.class
 implementacionDAO\ChatDAO.class
 presentacion\Login$1.class
 implementacionDAO\UsuarioDAO.class
-presentacion\FrmNuevoChat$2.class
 fachadaDAO\FachadaDAO.class
 presentacion\FrmRegistroUsuario$4.class
 presentacion\PnlChat$2.class
-presentacion\frmChat$6.class
 dominio\Imagen.class
 presentacion\PnlChat$1.class
 dominio\Domicilio.class
@@ -33,7 +31,6 @@ presentacion\Login.class
 presentacion\frmChat$1.class
 presentacion\FrmNuevoChat.class
 presentacion\frmChat$2.class
-presentacion\FrmRegistroUsuario$5.class
 presentacion\FrmRegistroUsuario.class
 conexionBD\ConexionBD.class
 dominio\Chat_.class
@@ -44,4 +41,5 @@ factoryDAO\IFactoryDAO.class
 presentacion\FrmRegistroUsuario$2.class
 fachadaDAO\IFachadaDAO.class
 dominio\Chat.class
+mx\itson\juatsapp\RunJuatsapp.class
 presentacion\frmChat.class
