@@ -16,7 +16,7 @@ public class ConexionBD implements IConexionBD{
     public EntityManagerFactory useConnectionMySQL() {
     
         if (factory == null || !factory.isOpen()) {
-            factory = Persistence.createEntityManagerFactory("persistenciaAgenciaTransito");
+            factory = Persistence.createEntityManagerFactory("persistencia");
         }
         return factory;
     }
