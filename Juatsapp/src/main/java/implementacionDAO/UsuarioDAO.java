@@ -1,4 +1,3 @@
-
 package implementacionDAO;
 
 import conexionBD.IConexionBD;
@@ -16,19 +15,19 @@ import javax.persistence.criteria.Root;
  *
  * @author Jairo G. Rodriguez Hernandez 00000213248
  */
-public class UsuarioDAO implements IUsuarioDAO{
+public class UsuarioDAO implements IUsuarioDAO {
 
     IConexionBD iConexionBD;
 
     public UsuarioDAO(IConexionBD iConexionBD) {
         this.iConexionBD = iConexionBD;
     }
-    
+
     @Override
     public Usuario createUsuario(Usuario usuario) {
         EntityManagerFactory bdf = iConexionBD.useConnectionMySQL();
         EntityManager bd = bdf.createEntityManager();
-        
+
         try {
             bd.getTransaction().begin();
             bd.persist(usuario);
@@ -37,14 +36,14 @@ public class UsuarioDAO implements IUsuarioDAO{
         } catch (Exception ex) {
             bd.getTransaction().rollback();
             System.out.println(ex.getMessage());
-            
+
         } finally {
             if (bd != null && bd.isOpen()) {
                 bd.close();
             }
         }
         return null;
-    
+
     }
 
     @Override
@@ -53,7 +52,7 @@ public class UsuarioDAO implements IUsuarioDAO{
         EntityManager bd = bdf.createEntityManager();
         try {
             bd.getTransaction().begin();
-            Usuario usuarioEncontrado = bd.find(Usuario.class, usuario.getTelefono());
+            Usuario usuarioEncontrado = bd.find(Usuario.class, usuario.getId());
             bd.getTransaction().commit();
             return usuarioEncontrado;
         } catch (Exception ex) {
@@ -65,7 +64,7 @@ public class UsuarioDAO implements IUsuarioDAO{
             }
         }
         return null;
-    
+
     }
 
     @Override
@@ -102,5 +101,5 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
         return null;
     }
-    
+
 }

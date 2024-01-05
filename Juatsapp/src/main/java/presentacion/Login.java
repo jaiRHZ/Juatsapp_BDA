@@ -1,4 +1,3 @@
-
 package presentacion;
 
 import dominio.Usuario;
@@ -13,7 +12,7 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     FachadaDAO fachadaDAO = new FachadaDAO();
-    
+
     /**
      * Creates new form login
      */
@@ -29,24 +28,26 @@ public class Login extends javax.swing.JFrame {
         if (txtContrasenyaLogin.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Digite su contraseña");
         }
-        
+
         List<Usuario> usuarios = fachadaDAO.readAllUsuario();
-     
+
         Usuario usuario = null;
-        
+
         for (int i = 0; i < usuarios.size(); i++) {
             if (usuarios.get(i).getTelefono().equals(txtTelefonoLogin.getText())
                     && usuarios.get(i).getContrasenya().equals(txtContrasenyaLogin.getText())) {
                 usuario = usuarios.get(i);
             }
         }
-        
+
         if (usuario != null) {
-            
-        }else{
+            frmChat chat = new frmChat(usuario);
+            chat.setVisible(true);
+            this.dispose();
+        } else {
             JOptionPane.showMessageDialog(null, "Usuario no encontrado");
         }
-        
+
     }
 
     /**
@@ -104,22 +105,15 @@ public class Login extends javax.swing.JFrame {
         pnBackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 70));
 
         jLabel2.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Contraseña:");
         pnBackground.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Teléfono: ");
         pnBackground.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
 
-        txtTelefonoLogin.setBackground(new java.awt.Color(255, 255, 255));
-        txtTelefonoLogin.setForeground(new java.awt.Color(0, 0, 0));
-        txtTelefonoLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtTelefonoLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnBackground.add(txtTelefonoLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 240, -1));
-
-        txtContrasenyaLogin.setBackground(new java.awt.Color(255, 255, 255));
-        txtContrasenyaLogin.setForeground(new java.awt.Color(0, 0, 0));
         pnBackground.add(txtContrasenyaLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 240, -1));
 
         btnIngresar.setBackground(new java.awt.Color(7, 94, 84));

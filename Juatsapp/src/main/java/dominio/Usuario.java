@@ -42,7 +42,7 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_domicilio")
     private Domicilio domicilio;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<Mensaje> mensajes;
 
     @ManyToMany(mappedBy = "usuarios")
@@ -51,7 +51,8 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(int id, String telefono, GeneroUsuario genero, Imagen perfil, Calendar fechaNacimiento, String contrasenya, Domicilio domicilio, List<Mensaje> mensajes, List<Chat> chats) {
+    public Usuario(int id, String telefono, GeneroUsuario genero, Imagen perfil,
+            Calendar fechaNacimiento, String contrasenya, Domicilio domicilio, List<Mensaje> mensajes, List<Chat> chats) {
         this.id = id;
         this.telefono = telefono;
         this.genero = genero;

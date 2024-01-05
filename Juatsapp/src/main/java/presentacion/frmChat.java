@@ -4,17 +4,47 @@
  */
 package presentacion;
 
+import dominio.Chat;
+import dominio.Usuario;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jairo G. Rodriguez Hernandez 00000213248
  */
 public class frmChat extends javax.swing.JFrame {
 
+    private Usuario usuario;
+
     /**
      * Creates new form frmChat
      */
+    public frmChat(Usuario usuario) {
+        initComponents();
+        this.usuario = usuario;
+        llenarTablaChats();
+    }
+
     public frmChat() {
         initComponents();
+
+    }
+
+    public void llenarTablaChats() {
+        List<Chat> listaChats = usuario.getChats();
+        DefaultTableModel modeloTabla = (DefaultTableModel) this.tblChats.getModel();
+        //Limpia tabla anterior
+        modeloTabla.setRowCount(0);
+        listaChats.forEach(chat -> {
+            Object[] fila = {
+                chat.getNombre()
+            };
+            modeloTabla.addRow(fila);
+
+        });
+        this.tblChats.updateUI();
     }
 
     /**
@@ -48,9 +78,13 @@ public class frmChat extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 100));
 
         btnPerfil.setBackground(new java.awt.Color(37, 211, 102));
-        btnPerfil.setForeground(new java.awt.Color(0, 0, 0));
         btnPerfil.setText("Perfil");
         btnPerfil.setBorder(null);
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
+            }
+        });
 
         btnCerrarSesion.setBackground(new java.awt.Color(204, 0, 0));
         btnCerrarSesion.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
@@ -107,9 +141,15 @@ public class frmChat extends javax.swing.JFrame {
         btnNuevoChat.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnNuevoChat.setText("Nuevo Chat");
         btnNuevoChat.setBorder(null);
+        btnNuevoChat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoChatActionPerformed(evt);
+            }
+        });
         pnBackground.add(btnNuevoChat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 150, 40));
 
         tblChats.setBackground(new java.awt.Color(7, 94, 84));
+        tblChats.setForeground(new java.awt.Color(204, 204, 204));
         tblChats.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -155,6 +195,16 @@ public class frmChat extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnNuevoChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoChatActionPerformed
+        // TODO add your handling code here:
+        FrmNuevoChat frmNuevoChat = new FrmNuevoChat(usuario, this);
+        frmNuevoChat.setVisible(true);
+    }//GEN-LAST:event_btnNuevoChatActionPerformed
+
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPerfilActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -199,6 +249,6 @@ public class frmChat extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnBackground;
     private javax.swing.JPanel pnlChat;
-    private javax.swing.JTable tblChats;
+    public javax.swing.JTable tblChats;
     // End of variables declaration//GEN-END:variables
 }
