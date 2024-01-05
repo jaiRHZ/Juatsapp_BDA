@@ -17,6 +17,8 @@ public interface IFachadaDAO {
 
     public List<Chat> readAllChat();
 
+    public Chat updateChat(Chat chat);
+
     public Mensaje createMensaje(Mensaje mensaje);
 
     public Mensaje readMensaje(Mensaje mensaje);

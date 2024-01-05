@@ -12,10 +12,13 @@ C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\fa
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\conexionBD\ConexionBD.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\dominio\Chat.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\interfaces\IChatDAO.java
+C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\presentacion\frmChat.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\presentacion\Login.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\fachadaDAO\FachadaDAO.java
+C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\presentacion\FrmNuevoChat.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\implementacionDAO\ChatDAO.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\mx\itson\juatsapp\Juatsapp.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\dominio\Usuario.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\implementacionDAO\MensajeDAO.java
 C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\dominio\GeneroUsuario.java
+C:\Users\Jairi\OneDrive\Documentos\GitHub\JuatsappPriv\Juatsapp\src\main\java\presentacion\PnlChat.java

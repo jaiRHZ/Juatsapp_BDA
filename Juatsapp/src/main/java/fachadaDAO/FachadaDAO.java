@@ -1,4 +1,3 @@
-
 package fachadaDAO;
 
 import dominio.Chat;
@@ -12,15 +11,14 @@ import java.util.List;
  *
  * @author Jairo G. Rodriguez Hernandez 00000213248
  */
-public class FachadaDAO implements  IFachadaDAO{
+public class FachadaDAO implements IFachadaDAO {
 
     IFactoryDAO iFactoryDAO;
 
     public FachadaDAO() {
-        this.iFactoryDAO = new FactoryDAO() ;
+        this.iFactoryDAO = new FactoryDAO();
     }
-    
-    
+
     @Override
     public Chat createChat(Chat chat) {
         return iFactoryDAO.createChatDAO().createChat(chat);
@@ -75,5 +73,10 @@ public class FachadaDAO implements  IFachadaDAO{
     public List<Usuario> readAllUsuario() {
         return iFactoryDAO.createUsuarioDAO().readAllUsuario();
     }
-    
+
+    @Override
+    public Chat updateChat(Chat chat) {
+        return iFactoryDAO.createChatDAO().updateChat(chat);
+    }
+
 }

@@ -32,10 +32,12 @@ public class Login extends javax.swing.JFrame {
         List<Usuario> usuarios = fachadaDAO.readAllUsuario();
 
         Usuario usuario = null;
-
+        Usuario usuarioIngresado = new Usuario();
+        usuarioIngresado.setTelefono(txtTelefonoLogin.getText());
+        usuarioIngresado.setContrasenya(txtContrasenyaLogin.getText());
         for (int i = 0; i < usuarios.size(); i++) {
-            if (usuarios.get(i).getTelefono().equals(txtTelefonoLogin.getText())
-                    && usuarios.get(i).getContrasenya().equals(txtContrasenyaLogin.getText())) {
+            if (usuarios.get(i).getTelefono().equals(usuarioIngresado.getTelefono())
+                    && usuarios.get(i).getContrasenya().equals(usuarioIngresado.getContrasenya())) {
                 usuario = usuarios.get(i);
             }
         }

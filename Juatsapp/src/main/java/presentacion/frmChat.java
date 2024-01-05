@@ -6,6 +6,8 @@ package presentacion;
 
 import dominio.Chat;
 import dominio.Usuario;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -17,23 +19,23 @@ import javax.swing.table.DefaultTableModel;
 public class frmChat extends javax.swing.JFrame {
 
     private Usuario usuario;
+    private List<Chat> listaChats;
 
     /**
      * Creates new form frmChat
      */
     public frmChat(Usuario usuario) {
-        initComponents();
         this.usuario = usuario;
+        initComponents();
         llenarTablaChats();
     }
 
     public frmChat() {
         initComponents();
-
     }
 
     public void llenarTablaChats() {
-        List<Chat> listaChats = usuario.getChats();
+        listaChats = usuario.getChats();
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblChats.getModel();
         //Limpia tabla anterior
         modeloTabla.setRowCount(0);
@@ -61,7 +63,7 @@ public class frmChat extends javax.swing.JFrame {
         btnPerfil = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        pnlChat = new javax.swing.JPanel();
+        panelPrincipal = new javax.swing.JPanel();
         btnNuevoChat = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblChats = new javax.swing.JTable();
@@ -91,6 +93,11 @@ public class frmChat extends javax.swing.JFrame {
         btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrarSesion.setText("Cerrar Sesión");
         btnCerrarSesion.setBorder(null);
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,20 +129,20 @@ public class frmChat extends javax.swing.JFrame {
 
         pnBackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        pnlChat.setBackground(new java.awt.Color(255, 255, 255));
+        panelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout pnlChatLayout = new javax.swing.GroupLayout(pnlChat);
-        pnlChat.setLayout(pnlChatLayout);
-        pnlChatLayout.setHorizontalGroup(
-            pnlChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
+        panelPrincipal.setLayout(panelPrincipalLayout);
+        panelPrincipalLayout.setHorizontalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 620, Short.MAX_VALUE)
         );
-        pnlChatLayout.setVerticalGroup(
-            pnlChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelPrincipalLayout.setVerticalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 430, Short.MAX_VALUE)
         );
 
-        pnBackground.add(pnlChat, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 620, 430));
+        pnBackground.add(panelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 620, 430));
 
         btnNuevoChat.setBackground(new java.awt.Color(7, 94, 84));
         btnNuevoChat.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
@@ -167,6 +174,11 @@ public class frmChat extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblChats.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblChatsMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblChats);
@@ -204,6 +216,29 @@ public class frmChat extends javax.swing.JFrame {
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPerfilActionPerformed
+
+    private void tblChatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChatsMouseClicked
+        // TODO add your handling code here:
+        Chat chatSeleccionado = listaChats.get(tblChats.getSelectedRow());
+        cargarPanelChat(chatSeleccionado, usuario);
+    }//GEN-LAST:event_tblChatsMouseClicked
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    public void cargarPanelChat(Chat chat, Usuario usuario) {
+        PnlChat pnlChat = new PnlChat(chat, usuario);
+        pnlChat.setSize(620, 430);
+        panelPrincipal.setSize(620, 430);
+        pnlChat.setLocation(0, 0);
+        pnlChat.setBackground(Color.GRAY);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(pnlChat, BorderLayout.CENTER);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }
 
     /**
      * @param args the command line arguments
@@ -247,8 +282,8 @@ public class frmChat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel pnBackground;
-    private javax.swing.JPanel pnlChat;
     public javax.swing.JTable tblChats;
     // End of variables declaration//GEN-END:variables
 }

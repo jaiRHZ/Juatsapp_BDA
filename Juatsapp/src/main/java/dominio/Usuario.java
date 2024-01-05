@@ -1,6 +1,8 @@
 package dominio;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -58,7 +60,7 @@ public class Usuario implements Serializable {
         this.genero = genero;
         this.perfil = perfil;
         this.fechaNacimiento = fechaNacimiento;
-        this.contrasenya = contrasenya;
+        this.contrasenya = encriptar(contrasenya);
         this.domicilio = domicilio;
         this.mensajes = mensajes;
         this.chats = chats;
@@ -69,7 +71,7 @@ public class Usuario implements Serializable {
         this.genero = genero;
         this.perfil = perfil;
         this.fechaNacimiento = fechaNacimiento;
-        this.contrasenya = contrasenya;
+        this.contrasenya = encriptar(contrasenya);
         this.domicilio = domicilio;
         this.mensajes = mensajes;
         this.chats = chats;
@@ -80,7 +82,7 @@ public class Usuario implements Serializable {
         this.genero = genero;
         this.perfil = perfil;
         this.fechaNacimiento = fechaNacimiento;
-        this.contrasenya = contrasenya;
+        this.contrasenya = encriptar(contrasenya);
         this.domicilio = domicilio;
     }
 
@@ -122,7 +124,7 @@ public class Usuario implements Serializable {
     }
 
     public void setContrasenya(String contrasenya) {
-        this.contrasenya = contrasenya;
+        this.contrasenya = encriptar(contrasenya);
     }
 
     public Domicilio getDomicilio() {
@@ -155,6 +157,27 @@ public class Usuario implements Serializable {
 
     public void setChats(List<Chat> chats) {
         this.chats = chats;
+    }
+
+    private static String encriptar(String contrasenia) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashedPassword = md.digest(contrasenia.getBytes());
+
+            // Convierte el hash a una representación hexadecimal
+            StringBuilder hexString = new StringBuilder();
+            for (byte hashByte : hashedPassword) {
+                String hex = Integer.toHexString(0xff & hashByte);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

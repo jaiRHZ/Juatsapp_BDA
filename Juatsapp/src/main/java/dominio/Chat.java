@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "chat")
 public class Chat {
-    
+
     //Atributos
     @Id
     @Column(name = "id")
@@ -30,8 +30,7 @@ public class Chat {
 
     @Column(name = "nombre", nullable = false, length = 150)
     private String nombre;
-    
-    
+
     private Imagen miniatura;
 
     //Relaciones
@@ -40,11 +39,10 @@ public class Chat {
             joinColumns = @JoinColumn(name = "id_usuario"),
             inverseJoinColumns = @JoinColumn(name = "id_chat"))
     private List<Usuario> usuarios;
-    
+
     @OneToMany(mappedBy = "chat")
     private List<Mensaje> mensajes;
 
-    
     //--Constructores--
     public Chat() {
     }
@@ -67,6 +65,10 @@ public class Chat {
     public Chat(String nombre, Imagen miniatura) {
         this.nombre = nombre;
         this.miniatura = miniatura;
+    }
+
+    public void addUsuario(Usuario usuario) {
+        this.usuarios.add(usuario);
     }
 
     //Getter & setter
@@ -137,6 +139,4 @@ public class Chat {
         return "Chat{" + "idChat=" + idChat + ", nombre=" + nombre + ", miniatura=" + miniatura + ", usuarios=" + usuarios + ", mensajes=" + mensajes + '}';
     }
 
-    
-    
 }
